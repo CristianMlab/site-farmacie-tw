@@ -1,0 +1,36 @@
+.duotone-brusture{
+    background-image: url("../images/brusture1.jpg");
+    height:691px;
+    width:987px;
+    position:relative;
+    margin:auto;
+    transition:filter 1s;
+}
+
+.duotone-brusture::before{
+    background-color: rgb(240, 14, 46);
+    content: '';
+    display: block;
+    width: 987px;
+    height: 691px;
+    mix-blend-mode: darken;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.duotone-brusture::after {
+    background-color: rgb(25, 37, 80);
+    content: '';
+    display: block;
+    width: 987px;
+    height: 691px;
+    mix-blend-mode: lighten;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.duotone-brusture:hover{
+    filter: grayscale(1);
+}

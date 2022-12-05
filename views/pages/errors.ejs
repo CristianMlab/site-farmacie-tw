@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include("../fragments/head.ejs") %>
+        <style>
+            main{
+                padding-left:15px;
+                padding-top:15px;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include("../fragments/header.ejs") %>
+        <main>
+            <h2>EROARE <%= identifier %></h2>
+            <h2><%= title %></h3>
+            <h3><%= text %></h3>
+            <img src=<%= errorImg %> />
+        </main>
+        <%- include("../fragments/footer.ejs") %>
+    </body>
+</html>

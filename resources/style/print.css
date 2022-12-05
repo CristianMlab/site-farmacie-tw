@@ -1,0 +1,74 @@
+@media print{
+    body, h1, h2, h3, p{
+        background:none;
+        color:#000 !important;
+    }
+
+    header,nav,footer{
+        display:none;
+    }
+
+    #meniuprint{
+        display:block!important;
+    }
+
+    #title{
+        display:block!important;
+        position:relative;
+		margin-top: 50%;
+		text-align:center;
+		margin-left:1cm;
+	}
+
+    #banner{
+        background-color:black;
+        border:black inset 4px;
+        display:block!important;
+        position:relative;
+        page-break-after:always;
+        margin:auto;
+        margin-top:50%;
+        width:70%;
+        height:1cm;
+        text-align:center;
+        font-size:25px;
+    }
+    a{
+        display:none;
+    }
+    iframe, img{
+        display:none;
+    }
+    #watermark{
+        display: block!important;
+        position: fixed;/*apare pe toate paginile*/
+        bottom:0;
+        color:rgba(0,0,0,0.4);
+        right:0;
+        opacity:0.4;
+        text-align:center;
+        border-radius:25px;
+        border:black solid 3px;
+        padding:5px 5px 5px 5px;
+	}
+    #int8{
+        display:none;
+    }
+}
+
+@page {
+    size: A4 portrait;
+    margin-bottom:2cm;
+    margin-top:2cm;
+    counter-increment: page;
+        
+}
+@page:left{
+    margin-left:3cm;
+    margin-right:1cm;
+    border-radius: 20cm;
+}
+@page:right{
+    margin-right:3cm;
+    margin-left:1cm;
+}

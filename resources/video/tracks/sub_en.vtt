@@ -1,0 +1,16 @@
+WEBVTT
+
+STYLE
+::cue {
+	background-color:white;
+	color:black;
+}
+
+00:00.000 --> 00:03.000 line:5%
+Farmacias
+
+00:05.000 --> 00:08.000 line:5%
+<i>Best</i> brands
+
+00:09.000 --> 00:12.000 line:5%
+<i>Best</i> prices

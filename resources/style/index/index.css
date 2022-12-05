@@ -1,0 +1,154 @@
+main {
+  margin-top: 60px;
+  display: grid;
+}
+@media (min-width: 1460px) {
+  main {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  main {
+    grid-template-columns: repeat(1, minmax(250px, 1fr));
+  }
+}
+main h1 {
+  text-align: center;
+}
+
+.grid-container {
+  min-height: 200px;
+  padding-left: 15px;
+  margin-left: 0;
+  padding-right: 0;
+}
+
+.placeholder {
+  line-height: 200px;
+  text-align: center;
+}
+
+.side-img {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: 0;
+  float: left;
+}
+
+@media (min-width: 1460px) {
+  #prezentare1 {
+    grid-column-start: 1;
+    grid-column-end: 5;
+  }
+  #tabel2 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+  }
+  #calendar3 {
+    grid-column-start: 3;
+    grid-column-end: 5;
+  }
+  #anunturi4 {
+    grid-column-start: 3;
+    grid-column-end: 5;
+  }
+  #statistici6 {
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
+  #int8, #galerie9, .hr-container {
+    grid-column-start: 1;
+    grid-column-end: 5;
+  }
+}
+.hr-container hr {
+  width: 95%;
+  height: 10px;
+  border-radius: 6px;
+  background: repeating-linear-gradient(black, white 20%, black 20%);
+}
+
+.table-wrapper {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin: auto;
+  margin-top: 50px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 95%;
+}
+
+table {
+  margin: 0;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: normal;
+  border: none;
+  border-collapse: collapse;
+  background-color: #07352a;
+}
+
+.c1 {
+  background-color: #015249;
+}
+
+.c2 {
+  background-color: #04745a;
+}
+
+tr:hover {
+  background-color: #027474;
+}
+
+td:hover {
+  background-color: #0db5b4;
+}
+
+table td, th {
+  text-align: center;
+  padding: 8px;
+}
+
+#video-tabs {
+  display: flex;
+  flex-direction: row;
+  max-width: 95%;
+  overflow: hidden;
+}
+
+.tab {
+  display: block;
+  transition: all 0.3s;
+  width: 190px;
+  height: 60px;
+  background-color: #027474;
+  margin-bottom: 5px;
+  border: 2px solid #BCEAD5;
+  line-height: 60px;
+  text-align: center;
+}
+
+.tab:hover {
+  background-color: #0db5b4;
+}
+.tab:hover a {
+  color: #07352a;
+}
+
+.tab span {
+  font-size: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+section, aside {
+  padding: 5px;
+  margin-left: 1vw;
+  width: 95%;
+}/*# sourceMappingURL=index.css.map */

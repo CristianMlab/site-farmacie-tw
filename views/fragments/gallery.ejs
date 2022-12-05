@@ -1,0 +1,16 @@
+<div class="gallery-wrapper">
+    <div class="gallery-grid">
+        <% imagesArray.forEach((image) => { %>
+            <figure class="gallery-fig">
+                <picture>
+                    <source media="(min-width:1500px)" srcset= <%= galleryPath + image.cale_imagine %> >
+                    <source media="(min-width:700px)" srcset=<%= galleryPath + 'resized/' + image.cale_imagine.split('.')[0] + '-225.png' %> >
+                    <img src= <%= galleryPath + 'resized/' + image.cale_imagine.split('.')[0] + '-150.png' %> title =<%= image.titlu %> alt= <%= image.descriere %> />
+                </picture>
+                <figcaption class='image-caption' style ="text-align:center"><%= image.titlu %></figcaption>
+            </figure>
+        <% }) %>
+        <div class="empty-cell-5"></div>
+        <div class="empty-cell-8"></div>
+    </div>
+</div>

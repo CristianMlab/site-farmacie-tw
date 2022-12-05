@@ -1,0 +1,9 @@
+@media (max-width: 850px) {
+  .tab a{
+    font-size:10px;
+  }
+  .tab{
+    width:100px;
+    height:60px;
+  }
+}

@@ -1,0 +1,40 @@
+{
+    "cale_baza": "images/errors",
+    "eroare_default":{
+        "titlu":"Eroare !!!",
+        "text": "A survenit eroare.",
+        "imagine":"interzis.png"
+    },
+    "info_erori": [
+        {
+            "identificator":404,
+            "status":true,
+            "titlu":"404 - Pagina nu exista",
+            "text": "Respira adanc si mai incearca odata",
+            "imagine":"confused-meme.gif"
+        },
+        {
+            "identificator":403,
+            "status":true,
+            "titlu":"403 - Interzis",
+            "text": "Ai greșit ruta. Stânga-împrejur și pa!",
+            "imagine":"interzis.jpg"
+        },
+        
+        {
+            "identificator":1,
+            "status":false,
+            "titlu":"Site în lucru",
+            "text": "Muncim, muncim!",
+            "imagine":"donald-duck-mining.gif"
+        },
+        
+        {
+            "identificator":2,
+            "status":false,
+            "titlu":"Eroare baza date",
+            "text": "Reveniti mai tarziu!",
+            "imagine":"interzis.png"
+        }
+    ]
+}
