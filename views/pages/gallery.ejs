@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="style/sfaturi.css">
         <%- include("../fragments/head.ejs") %>
+        <style>
+            main{
+                padding-left:15px;
+                padding-top:15px;
+            }
+        </style>
     </head>
     <body>
         <%- include("../fragments/header.ejs") %>
         <main>
-            <div class="titlu">
-                Brusture
-                <div class="text-reflectat">Brusture</div> 
-            </div>
-            <div class="duotone-brusture">
-            </div>
+            <%- include("../fragments/gallery.ejs") %>
         </main>
         <%- include("../fragments/footer.ejs") %>
     </body>

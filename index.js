@@ -83,6 +83,12 @@ app.get(['/oferte', '/servicii'], (req, res, next) => {
     renderError(res, 1)
 })
 
+app.get('/galerie', (reg, res, next) => {
+    let sfert = Math.floor((new Date().getMinutes())/15);
+    console.log(sfert)
+    res.render('../views/pages/gallery', {imagesArray: globalObj.peSferturi[sfert], galleryPath: globalObj.images.path})
+})
+
 app.get('/*.ejs', (req, res, next) => {
     renderError(res, 403)
 })

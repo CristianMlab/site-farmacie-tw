@@ -34,3 +34,104 @@
 .duotone-brusture:hover{
     filter: grayscale(1);
 }
+
+.titlu {
+    position:relative;
+    margin-top:80px;
+    margin-left:45%;
+    margin-bottom:40px;
+    font-size:30px;
+}
+
+.text-reflectat{
+    position:absolute;
+	left:-8px;
+	top:86%;
+	transform-origin:0 0;
+	/*conetaza ordinea transformarilor!*/
+	transform: rotateX(180deg) skew(-45deg) scaleY(0.5) translate(10px,-25px); 
+	opacity:0.55;
+
+    --p: 300%;
+    --imagine-masca:repeating-radial-gradient(circle at 50% var(--p), transparent, black, transparent 3%);
+    --dimensiune-masca-normala:10% 10%;
+    --pozitie-masca:0 0;
+
+    mask-image: var(--imagine-masca);
+    -webkit-mask-image:var(--imagine-masca) ;
+    mask-size: var(--dimensiune-masca-normala);
+    --webkit-mask-size: var(--dimensiune-masca-normala);
+    transition:all 1s linear;
+    mask-position:var(--pozitie-masca);
+    --webkit-mask-position:var(--pozitie-masca);
+}
+
+.titlu:hover .text-reflectat{
+    animation: wave 1s infinite;
+}
+
+@keyframes wave{
+    0%{
+        --p:300%;
+    }
+    5%{
+        --p:295%;
+    }
+    10%{
+        --p:290%;
+    }
+    15%{
+        --p:285%;
+    }
+    20%{
+        --p:280%;
+    }
+    25%{
+        --p:275%;
+    }
+    30%{
+        --p:270%;
+    }
+    35%{
+        --p:265%;
+    }
+    40%{
+        --p:260%;
+    }
+    45%{
+        --p:255%;
+    }
+    50%{
+        --p:250%;
+    }
+    55%{
+        --p:245%;
+    }
+    60%{
+        --p:240%;
+    }
+    65%{
+        --p:235%;
+    }
+    70%{
+        --p:230%;
+    }
+    75%{
+        --p:225%;
+    }
+    80%{
+        --p:220%;
+    }
+    85%{
+        --p:215%;
+    }
+    90%{
+        --p:210%;
+    }
+    95%{
+        --p:205%;
+    }
+    100%{
+        --p:200%;
+    }
+}
