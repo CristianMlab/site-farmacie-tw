@@ -1,4 +1,4 @@
-:root {
+body {
     --forest: #051F20;
     --footer: #163832;
     --active: #F7CF1D;
@@ -34,6 +34,10 @@ header {
     }
 }
 
+body{
+    overflow-x:hidden;
+}
+
 p{
     color:white;
 }
@@ -57,7 +61,7 @@ header{
     z-index:100;
 }
 
-@media(min-width: 720px){
+@media(min-width: 800px){
     .menu{
         padding-left:0px;
         margin-left:10px;
@@ -204,4 +208,32 @@ footer {
     display:block;
     font-size:20px;
     transition:transform 1s ease-in-out;
+}
+
+.login-form{
+    z-index:1000;
+    width:300px;
+    flex-direction:column;
+    flex-shrink:1;
+    background-color:#051F20;
+    position:absolute;
+    top:0;
+    right:0;
+    padding-bottom:10px;
+    display:flex;
+    p{
+        font-size:10px;
+        label{
+            margin-top:5px;
+            margin-right:5px;
+            display:inline-block;
+            input{
+                size:10;
+            }
+        }
+    }
+}
+
+.hidden{
+    display:none;
 }

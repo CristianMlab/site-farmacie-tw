@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <link rel="stylesheet" href="/style/produse/produse.css">
+        <%- include("../fragments/head.ejs") %>
+        <script>
+            function filter() {
+              var input, filter, ul, li, a, i, txtValue;
+              input = document.getElementById('mainInput');
+              filter = input.value.toUpperCase();
+              li = document.getElementsByClassName('val-nume');
+            
+              for (i = 0; i < li.length; i++) {
+                a = li[i];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  li[i].parentElement.parentElement.parentElement.parentElement.style.display = "";
+                } else {
+                  li[i].parentElement.parentElement.parentElement.parentElement.style.display = "none";
+                }
+              }
+            }
+
+            function toggleFilter(){
+                let filtertab = document.getElementById('filtertab');
+                if(filtertab.className === "filters-hidden"){
+                    filtertab.className = "filters-visible";
+                } else {
+                    filtertab.className = "filters-hidden";
+                }
+                let main = document.getElementById('main-content');
+                if(main.className === "grid-produse"){
+                    main.className = "grid-produse mtop";
+                } else {
+                    main.className = "grid-produse";
+                }
+            }
+            function showVal(){
+                let range = document.getElementById('pret');
+                let label = document.getElementById('pret-label');
+                label.innerHTML = "Pret Maxim (" + range.value + ")";
+                filtreaza();
+            }
+
+            function resetFilters(){
+                let range = document.getElementById('pret');
+                let label = document.getElementById('pret-label');
+                range.value = 190;
+                showVal();
+
+                let radiotip = document.getElementsByClassName('btn-check radiotip');
+                console.log(radiotip)
+                radiotip[3].checked = true;
+
+                let checkbox = document.getElementsByClassName('btn-check checkbox');
+                for(var i=0; i<3; i++){
+                    checkbox[i].checked=true;
+                }
+
+                let descriere = document.getElementById('descriereprod');
+                descriereprod.value = "";
+
+                document.getElementById('administrare').value = "";
+                document.getElementById('sel1').value = "oricare";
+
+                var produse=document.getElementsByClassName("produs");
+                for (let produs of produse){
+                    produs.style.display="block";
+                }
+            }
+
+            function filtreaza(){
+                let maxPret = document.getElementById('pret').value;
+                let tip = document.getElementsByClassName('btn-check radiotip');
+                let tip_i = 0;
+                while(tip[tip_i].checked !== true){
+                    tip_i++;
+                }
+                let mapare = ['OTC', 'PRF-necompensat', 'PRF-compensat', 'Toate']
+                let gramaj = document.getElementsByClassName('btn-check checkbox');
+                let administrare = document.getElementById('administrare').value;
+                let recsarcina = document.getElementById('sel1').value;
+                console.log(administrare, recsarcina)
+
+                let produse = document.getElementsByClassName('produs');
+                let valpret = document.getElementsByClassName('val-pret');
+                let valgramaj = document.getElementsByClassName('val-gramaj');
+                let valcategorie = document.getElementsByClassName('val-categorie');
+                let valdescriere = document.getElementsByClassName('val-descriere');
+                let valadministrare = document.getElementsByClassName('val-administrare');
+                let valrec = document.getElementsByClassName('val-rec');
+
+                for(let i=0; i < produse.length ; i++){
+                    let display = '';
+                    let valpretn = parseInt(valpret[i].innerHTML);
+                    let valgramajn = parseInt(valgramaj[i].innerHTML);
+                    let valcategorien = valcategorie[i].innerHTML;
+                    let valadministraren = valadministrare[i].innerHTML;
+                    let valrecn = valrec[i].innerHTML;
+
+                    if(valpretn > maxPret){
+                        display = 'none';
+                        console.log(i + ' pret ' + valpretn + ' ' + maxPret);
+                    }
+                    if((valgramajn < 100 && gramaj[0].checked === false) || ((valgramajn >= 100 && valgramajn <= 300) && gramaj[1].checked === false) || (valgramajn > 300 && gramaj[2].checked === false)){
+                        display = 'none';
+                        console.log(i + ' gramaj');
+                    }
+                    if(tip_i !== 3 && mapare[tip_i] !== valcategorien){
+                        display = 'none';
+                        console.log(i + ' tip ' + mapare[tip_i] + ' ' + valcategorien);
+                    }
+                    
+                    if(administrare !== "" && valadministraren !== administrare){
+                        display = 'none';
+                        console.log(i + 'administrare');
+                    }
+
+                    if(recsarcina !== "oricare" && valrecn !== recsarcina){
+                        display = 'none';
+                        console.log(i + 'sarcina')
+                    }
+                
+                    produse[i].style.display = display;
+                }
+            }
+
+            function sorteaza(semn){
+                var produse=document.getElementsByClassName("produs");
+                var v_produse=Array.from(produse);
+        
+        
+                v_produse.sort(function(a,b){
+                    var pret_a=parseFloat(a.getElementsByClassName("val-pret")[0].innerHTML);
+                    var pret_b=parseFloat(b.getElementsByClassName("val-pret")[0].innerHTML);
+                    if(pret_a==pret_b){
+                        var nume_a=a.getElementsByClassName("val-nume")[0].innerHTML;
+                        var nume_b=b.getElementsByClassName("val-nume")[0].innerHTML;
+                        return semn*nume_a.localeCompare(nume_b);
+                    }
+                    return (pret_a-pret_b)*semn;
+                })
+                for (let produs of v_produse){
+                    produs.parentNode.appendChild(produs);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <%- include("../fragments/header.ejs") %>
+        <main>
+            <div class="header__content">
+                <div class="header__info">
+                    <h1 class="header__title">
+                        <img src="./ico/favicon-32x32.png" class="header-title__icon">
+                        Medicamente
+                    </h1>
+                </div>
+                <div class="header__controls">
+                    <button type="button" class="btn btn-primary" onClick="toggleFilter()">Filtre</button>
+                </div>
+                <div class="header__sbar">
+                    <input id="mainInput" type="search" placeholder="Cauta un medicament: eg. Parasinus, Pelafen   " onkeyup="filter()">
+                    <div class="filters-hidden" id="filtertab">
+                        <label for="form-range" class="form-label label-label" id="pret-label" >Pret Maxim (190)</label>
+                        <input type="range" min="10" max="200" value="190" class="form-range" id="pret" oninput="showVal(this.value)" onchange="showVal(this.value)">
+                        <label class="label-label">Tip</label>
+                        <div class="btn-toolbar btn-grid" role="group" onchange="filtreaza()">
+                            <input type="radio" class="btn-check radiotip" name="btnradio" id="btnradio1" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btnradio1">OTC</label>
+                            
+                            <input type="radio" class="btn-check radiotip" name="btnradio" id="btnradio2" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btnradio2">PRF-necompensat</label>
+
+                            <input type="radio" class="btn-check radiotip" name="btnradio" id="btnradio3" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btnradio3">PRF-compensat</label>
+
+                            <input type="radio" class="btn-check radiotip" name="btnradio" id="btnradio4" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary" for="btnradio4">Toate</label>
+                        </div>
+                        <label class="label-label mtop15">Gramaj</label>
+                        <div class="btn-toolbar btn-grid" role="group" onchange="filtreaza()">
+                            <input class="btn-check checkbox" type="checkbox" id="check1" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary" for="check1"> sub 100g</label>
+                            <input class="btn-check checkbox" type="checkbox" id="check2" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary" for="check2"> intre 100g si 300g</label>
+                            <input class="btn-check checkbox" type="checkbox" id="check3" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary" for="check3"> peste 300g</label>
+                          </div>
+                        <div class="form-floating mtop30 btn-grid" id="descriere-textarea">
+                            <textarea class="form-control" id="descriereprod" rows="4" placeholder="Descriere Produs"></textarea>
+                            <label for="descriereprod">Descriere Produs</label>
+                        </div>
+                        <label for="administrare" class="form-label label-label mtop30">Alege tipul de administrare din lista:</label>
+                        <input class="form-control btn-grid" list="administrares" name="administrare" id="administrare" onchange="filtreaza()">
+                        <datalist id="administrares">
+                        <% for( let cat of locals.administrare) { %>
+                            <option value=<%= cat %>></option>
+                        <% }%>
+                        </datalist>
+                        <label for="administrare" class="form-label label-label mtop30">Recomndare Sarcina</label>
+                        <select class="form-select btn-grid" id="sel1" name="sellist1" onchange="filtreaza()">
+                            <option selected="selected">oricare</option>
+                            <option>true</option>
+                            <option>false</option>
+                          </select>
+                        <div class="btn-toolbar btn-grid mtop30">
+                            <button type="button" class="btn btn-success" onClick="filtreaza()">Filtreaza</button>
+                            <button type="button" class="btn btn-primary" onClick="sorteaza(1)">Sorteaza ascendent (pret)</button>
+                            <button type="button" class="btn btn-primary" onClick="sorteaza(-1)">Sorteaza descendent (pret)</button>
+                            <button type="button" class="btn btn-danger" onClick="resetFilters()">Resetare</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <section id="main-content" class="grid-produse">
+                <% for( let prod of locals.produse) { %>
+                    <article class="produs" >
+                        <figure>
+                            <a href="/produs/<%-prod.id %>" onclick=<%= "accesare(" + prod.id + ")" %>><img src="/images/meds/<%- prod.imgsrc %>" style="height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+                        </figure>
+                        <div class="info-prod">
+                            <h3 class="nume"><a href="/produs/<%-prod.id %>" onclick=<%= "accesare(" + prod.id + ")" %>><span class="val-nume"><%- prod.nume%></span>, <span class="val-categorie"><%- prod.eliberare%></span>, <span class="val-gramaj"><%- prod.gramaj%></span>g</a></h3>
+                        </div>
+                        <h3 class="pret"><span class="val-pret"><%- prod.pret%></span> lei</h3>
+                        <span id="val-descriere" class="val-descriere" style="display:none"><%-prod.descriere%></span>
+                        <span class="val-administrare" style="display:none"><%-prod.administrare %></span>
+                        <span class="val-rec" style="display:none"><%-prod.rec_sarcina %></span>
+                    </article>
+                <% }%>
+            </section>
+        </main>
+        <%- include("../fragments/footer.ejs") %>
+    </body>
+</html>

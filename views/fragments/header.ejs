@@ -16,11 +16,32 @@
                 </ul>
             </li>
             <li><a href = "/oferte">Oferte</a></li>
-            <li><a href = "/servicii">Servicii</a></li>
             <li><a href = "/sfaturi">Sfaturi Medicale</a></li>
             <li><a href = "/galerie">Galerie</a></li>
+            <li>
+                <a href = "/produse">Produse</a>
+                <ul class="submenu">
+                    <% for( let cat of locals.categorii) { %>
+                        <a href = <%= "/produse?cat=" + cat %>><%- cat %></a>
+                    <% }%>
+                </ul>
+            </li>
         </ul>
     </nav>
+    <form id="login-form" class="login-form hidden" method="post" action="">
+        <p>
+            <label>
+                Username: <input type="text" name="username" id="inp-username-login" required pattern="[A-Za-z0-9#_./]+">
+            </label>
+        </p>
+        <p>
+            <label>
+                Parola: <input id="parl-login" type="password" required  name="parola" value="">
+            </label>
+        </p>
+        <button type="submit"></button>
+    </form>
+    <button class="show-login" onclick="showlogin()" style="display:none">Login</button>
     <i id="hamburger-icon" class="fas fa-bars" onclick="switchHamburgerMenu()"></i>
 </header>
 <!-- Doar pentru print -->

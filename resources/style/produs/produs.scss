@@ -1,0 +1,36 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+
+#art-produs{
+    position:relative;
+    display:block;
+    margin:auto;
+    max-width:1000px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+    border-radius:10px;
+    border:solid 1px yellow;
+    background-color:#071D19;
+    margin-top:100px;
+}
+
+main{
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.accordion-header{
+    margin-top: 0;
+}
+
+@media(min-width:950px){
+    #art-produs figure{
+        float:left; 
+        height:330px;
+    }
+    h3, p{
+        margin-left:300px;
+    }
+}

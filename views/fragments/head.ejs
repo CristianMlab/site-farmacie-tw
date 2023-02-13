@@ -17,7 +17,9 @@
 <link rel="stylesheet" href="/style/layout/layout-1000.css">
 <link rel="stylesheet" href="/style/print.css">
 <link rel="stylesheet" href="/style/gallery.css">
+
 <script src="https://kit.fontawesome.com/dd83512be7.js" crossorigin="anonymous"></script>
+<script src="/js/cookies.js"></script>
 <script>
     const switchHamburgerMenu = () => {
         let x = document.getElementById("navbar");
@@ -29,5 +31,26 @@
           x.className = "menu";
           y.className = "";
         }
+    }
+    const filtreToggle = () => {
+        let x = document.getElementById("filtre");
+        if(filtre.style.display === "none"){
+          filtre.style.display = "block";
+        } else {
+          filtre.style.display = "none";
+        }
+    }
+    function updateRangeInput(val) {
+      document.getElementById('infoRange').innerHTML='(' + val + ')'; 
+    }
+
+    function showlogin(){
+      let x = document.getElementById('login-form');
+      console.log(x.style.display);
+      if(x.style.display === ""){
+        x.className = 'login-form';
+      } else {
+        x.className = 'login-form hidden';
+      }
     }
 </script>

@@ -69,6 +69,7 @@ main h1 {
   height: 10px;
   border-radius: 6px;
   background: repeating-linear-gradient(black, white 20%, black 20%);
+  margin-top: 20px;
 }
 
 .table-wrapper {
@@ -83,14 +84,17 @@ main h1 {
   max-width: 95%;
 }
 
+.table-wrapper {
+  border-radius: 10px;
+  border: none;
+}
+
 table {
   margin: 0;
-  border-radius: 5px;
   font-size: 12px;
   font-weight: normal;
-  border: none;
-  border-collapse: collapse;
   background-color: #07352a;
+  border-collapse: collapse;
 }
 
 .c1 {
@@ -101,12 +105,12 @@ table {
   background-color: #04745a;
 }
 
-tr:hover {
+tr:hover td {
   background-color: #027474;
 }
 
 td:hover {
-  background-color: #0db5b4;
+  background-color: #0db5b4 !important;
 }
 
 table td, th {

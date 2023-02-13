@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <link rel="stylesheet" href="/style/produs/produs.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <%- include("../fragments/head.ejs") %>
+        <script>
+            function accordion(id){
+                let elem = document.getElementById('accbtn');
+                console.log('xd');
+                if(elem.ariaExpanded === "false"){
+                    localStorage.setItem('ac-open' + id , false);
+                } else {
+                    localStorage.setItem('ac-open' + id , true);
+                }
+            }
+
+            window.addEventListener("load", (event) => {
+                console.log("page is fully loaded");
+                console.log('xd');
+                console.log(localStorage.getItem('ac-open'))
+                let id = document.getElementById('id').innerHTML;
+
+                let elemone = document.getElementById('accbtn');
+                let elemtwo = document.getElementById('collapseTwo');
+                if(localStorage.getItem('ac-open' + id) === 'true'){
+                    elemone.className = "accordion-button";
+                    elemone.ariaExpanded = 'true';
+                    elemtwo.className = "accordion-collapse collapse show";
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <%- include("../fragments/header.ejs") %>
+        <main>
+            <section>
+                <h2></h2>
+                <article id="art-produs">
+                    <figure class="imag-produs">
+                        <img  src="/images/meds/<%- locals.prod.imgsrc %>" alt="[imagine <%- locals.prod.nume %>]" />
+                    </figure>
+                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
+                    <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
+                    <p style="display:none">Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
+                    <p>Compozitie: <span class="ingrediente"><%- locals.prod.compozitie %> </span></p>
+                    <p>Cale de administrare: <span class="calorii"><%- locals.prod.administrare %> </span></p>
+                    <p>Gramaj: <span class="gramaj"><%- locals.prod.gramaj %> </span></p>
+                    <p>Eliberare: <span class="categorie"><%- locals.prod.eliberare %> </span></p>
+                    <p>Recomandat la sarcina: <span class="pt_diabetici"><%- locals.prod.rec_sarcina %> </span></p>
+                    <p>Data expirare: <span class="categorie"><%- locals.prod.data_expirarii %> </span></p>
+                    <span id="id" style="display:none"><%- locals.prod.id %></span>
+                    <div class="accordion" id="accordion" onclick=<%- "accordion(" + locals.prod.id + ")" %>>
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingTwo">
+                            <button id="accbtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              Descriere Medicament
+                            </button>
+                          </h2>
+                          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+                            <div class="accordion-body">
+                              <%- locals.prod.descriere %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </article>
+            </section>
+        </main>
+        <%- include("../fragments/footer.ejs") %>
+    </body>
+</html>

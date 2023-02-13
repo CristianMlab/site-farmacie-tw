@@ -8,11 +8,13 @@ body{
 }
 
 .gallery-wrapper{
-    margin-top:30px;
+    margin-top:100px;
+    margin-bottom:100px;
 }
 
 .gallery-grid{
     display:grid;
+    gap:50px;
 }
 
 @media(min-width:700px){
